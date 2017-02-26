@@ -10,6 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.cloud.vault.util.IntegrationTestSupport;
 import org.springframework.cloud.vault.util.VaultRule;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.Collections;
@@ -24,6 +25,7 @@ import static org.assertj.core.api.Assertions.*;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = VaultPropertySourceLocatorIntegrationTests.TestApplication.class)
+@ActiveProfiles({"integrationtest"})
 public class VaultPropertySourceLocatorIntegrationTests extends IntegrationTestSupport {
 
 	@BeforeClass
@@ -31,7 +33,6 @@ public class VaultPropertySourceLocatorIntegrationTests extends IntegrationTestS
 		System.setProperty("spring.application.name", "wintermute");
 		System.setProperty("spring.cloud.vault.application-name", "neuromancer");
 		System.setProperty("spring.cloud.vault.generic.application-name", "neuromancer,icebreaker");
-		System.setProperty("spring.profiles.active", "integrationtest");
 		VaultRule vaultRule = new VaultRule();
 		vaultRule.before();
 
